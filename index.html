@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Love - Surprise</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+    body {
+      background-color: #ffc0cb; /* soft pink */
+      font-family: 'Baloo 2', 'Comic Sans MS', cursive, sans-serif;
+      color: #4b004b; /* dark purple for contrast */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    button {
+      background-color: #e06666;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 12px;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(224, 102, 102, 0.6);
+    }
+    button:hover {
+      background-color: #f08080;
+    }
+    .hidden {
+      display: none;
+    }
+    .envelope {
+      width: 120px;
+      margin-top: 30px;
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .flower {
+      width: 150px;
+      margin-top: 30px;
+      animation: fadeIn 2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    .message-box {
+      max-width: 600px;
+      background-color: rgba(255, 182, 193, 0.4);
+      border: 2px solid #e06666;
+      border-radius: 20px;
+      padding: 30px 25px;
+      font-size: 20px;
+      line-height: 1.6;
+      margin-top: 30px;
+      box-shadow: 0 8px 16px rgba(224, 102, 102, 0.3);
+      user-select: none;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Step 1: Greeting -->
+  <div id="greeting">
+    <h2>Hello my loveee. How's your day?</h2>
+    <p>Open this, I have a little surprise for you 💖</p>
+    <button id="startBtn">Yes</button>
+  </div>
+
+  <!-- Step 2: Envelope + Play Music -->
+  <div id="envelopeSection" class="hidden">
+    <img src="envelope.png" alt="Envelope" class="envelope" id="envelopeImg" />
+    <button id="openLetterBtn">Open</button>
+  </div>
+
+  <!-- Step 3: Love message -->
+  <div id="messageSection" class="hidden">
+    <div class="message-box" id="loveMessage">
+      I just want to say how truly thankful I am for you.<br><br>
+      For every good thing you've done for me — for taking care of me, for loving me so completely, and for being patient even on the days I struggle to love myself.<br><br>
+      You deserve this flower — not just any flower, but one full of love, warmth, and everything beautiful, just like your soul.<br><br>
+      You are my safe place. My home. And in every choice you make, please know that I am — and always will be — your first and biggest supporter.<br><br>
+      Here's a flower that will never wither, just like my love for you.<br><br>
+      Thank you for making love feel like peace.<br>
+      Thank you for existing.<br><br>
+      Forever yours,<br> LOVE 🌸
+    </div>
+    <button id="nextBtn">Do you want to go next?</button>
+  </div>
+
+  <!-- Step 4: Reminder message -->
+  <div id="reminderSection" class="hidden">
+    <div class="message-box">
+      Whenever you feel tired or unsure, come back here.<br><br>
+      This is your reminder that you're deeply loved.<br><br>
+      — LOVE
+    </div>
+    <button id="showFlowerBtn">Yes</button>
+  </div>
+
+  <!-- Step 5: Flower and final message -->
+  <div id="flowerSection" class="hidden">
+    <img src="sunflower.png" alt="Sunflower" class="flower" />
+    <div class="message-box" style="margin-top: 20px;">
+      Here is the flower for you, my love. 🌻
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="mymusic.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const envelopeSection = document.getElementById('envelopeSection');
+    const greeting = document.getElementById('greeting');
+    const openLetterBtn = document.getElementById('openLetterBtn');
+    const messageSection = document.getElementById('messageSection');
+    const nextBtn = document.getElementById('nextBtn');
+    const reminderSection = document.getElementById('reminderSection');
+    const showFlowerBtn = document.getElementById('showFlowerBtn');
+    const flowerSection = document.getElementById('flowerSection');
+    const bgMusic = document.getElementById('bgMusic');
+
+    startBtn.addEventListener('click', () => {
+      bgMusic.play();
+      greeting.classList.add('hidden');
+      envelopeSection.classList.remove('hidden');
+    });
+
+    openLetterBtn.addEventListener('click', () => {
+      envelopeSection.classList.add('hidden');
+      messageSection.classList.remove('hidden');
+    });
+
+    nextBtn.addEventListener('click', () => {
+      messageSection.classList.add('hidden');
+      reminderSection.classList.remove('hidden');
+    });
+
+    showFlowerBtn.addEventListener('click', () => {
+      reminderSection.classList.add('hidden');
+      flowerSection.classList.remove('hidden');
+      const flowerImg = document.querySelector('.flower');
+      flowerImg.style.opacity = 1;
+    });
+  </script>
+
+</body>
+</html>
